@@ -1,7 +1,7 @@
 import { SettingsType } from '../lib/types';
 
 export const scrolledToBottom = (target: HTMLInputElement) => {
-    return Math.floor(target.scrollHeight - target.scrollTop) === target.clientHeight - 1;
+    return Math.floor(target.scrollHeight - target.scrollTop) <= target.clientHeight;
 };
 
 export const getFields = (settings: SettingsType) => {
