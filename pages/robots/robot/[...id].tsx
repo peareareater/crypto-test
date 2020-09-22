@@ -34,6 +34,9 @@ const RobotDetails: FC<RobotDetailsPropsType> = ({ state, dispatch }) => {
             <Typography variant="h4" gutterBottom>
                 Robot Details
             </Typography>
+            <div>
+                {JSON.stringify(settings, null, 2)}
+            </div>
             <form className={classes.root}>
                 {fields.map((field, id) => {
                     const value = getNestedValue(settings, field.value);
