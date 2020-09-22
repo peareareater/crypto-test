@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { ReducerProps, NoticiationTypes } from '../../../lib/types';
 import TextField from '@material-ui/core/TextField';
 import { settingsFormStyles } from '../../../styles/MaterialStyles';
@@ -7,6 +7,7 @@ import styles from '../../../styles/Home.module.css';
 import { actionTypes } from '../../../reducer/actionTypes';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 interface RobotDetailsPropsType extends ReducerProps {}
 
@@ -34,38 +35,40 @@ const RobotDetails: FC<RobotDetailsPropsType> = ({ state, dispatch }) => {
             <Typography variant="h4" gutterBottom>
                 Robot Details
             </Typography>
-            <div>
-                {JSON.stringify(settings, null, 2)}
-            </div>
-            <form className={classes.root}>
-                {fields.map((field, id) => {
-                    const value = getNestedValue(settings, field.value);
-                    return (
-                        <TextField
-                            key={`field-${field.name}-${id}`}
-                            label={field.name}
-                            value={value}
-                            name={field.value}
-                            onChange={handleChange}
-                            type="number"
-                            InputLabelProps={{
-                                style: {
-                                    fontSize: '1rem',
-                                },
-                            }}
-                            inputProps={{
-                                style: {
-                                    fontSize: '1.2rem',
-                                    textAlign: 'center',
-                                },
-                            }}
-                        />
-                    );
-                })}
-                <Button variant="contained" color="primary" onClick={applyChanges}>
-                    Save
-                </Button>
-            </form>
+            <Grid container justify="center" alignItems="center">
+                <form className={classes.root}>
+                    {fields.map((field, id) => {
+                        const value = getNestedValue(settings, field.value);
+                        return (
+                            <TextField
+                                key={`field-${field.name}-${id}`}
+                                label={field.name}
+                                value={value}
+                                name={field.value}
+                                onChange={handleChange}
+                                type="number"
+                                InputLabelProps={{
+                                    style: {
+                                        fontSize: '1rem',
+                                    },
+                                }}
+                                inputProps={{
+                                    style: {
+                                        fontSize: '1.2rem',
+                                        textAlign: 'center',
+                                    },
+                                }}
+                            />
+                        );
+                    })}
+                    <Button variant="contained" color="primary" onClick={applyChanges}>
+                        Save
+                    </Button>
+                </form>
+                <div>
+                    <pre>{JSON.stringify(settings, null, 2)}</pre>
+                </div>
+            </Grid>
         </div>
     );
 };
